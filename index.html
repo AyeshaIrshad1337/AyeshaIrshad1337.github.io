@@ -1,0 +1,1016 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Ayesha Irshad — AI Engineer & Researcher</title>
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg"/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+:root{
+  /* Dark IDE palette — deep navy base with cyan/green terminal accents */
+  --bg:#0a0e17;              /* page — near-black navy */
+  --surface:#111826;         /* cards */
+  --surface-alt:#0d131f;     /* inset panels, code blocks */
+  --surface-hover:#192233;   /* hover fill */
+
+  --border:#1e2942;          /* card borders */
+  --border-subtle:#141c2c;
+  --border-strong:#2a3855;
+
+  --text-primary:#e6edf7;    /* headlines, body */
+  --text-secondary:#96a3bf;  /* descriptions */
+  --text-muted:#5f6d87;      /* captions, metadata */
+
+  --accent:#00ff9f;          /* terminal green — primary accent */
+  --accent-dim:#00cc7f;
+  --accent-2:#7b61ff;        /* violet — secondary */
+  --accent-3:#22d3ee;        /* cyan — tertiary */
+  --accent-pink:#ff6ac1;     /* highlight */
+
+  --success:#00ff9f;
+  --warning:#fbbf24;
+  --error:#ff6b6b;
+
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.5);
+  --shadow-glow:0 0 24px rgba(0,255,159,0.15);
+
+  --font-sans:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;}
+body{
+  background:var(--bg);
+  color:var(--text-primary);
+  font-family:var(--font-sans);
+  font-weight:400; font-size:15px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; margin:0;
+  background-image:
+    radial-gradient(circle at 20% 0%, rgba(123,97,255,0.08), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(0,255,159,0.05), transparent 40%);
+}
+</style>
+<style>
+  html, body { margin: 0; padding: 0; background: var(--bg); scroll-behavior: smooth; }
+  a { color: inherit; }
+  ::selection { background: rgba(0,255,159,0.25); color: var(--text-primary); }
+
+  .page { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 40;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,14,23,0.78);
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .nav-inner {
+    max-width: 1040px; margin: 0 auto; padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); font-weight: 500; font-size: 15px; letter-spacing: -0.01em; }
+  .brand .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--accent); display: inline-block; }
+  .nav-links { display: flex; gap: 6px; align-items: center; }
+  .nav-links a {
+    font-size: 13px; color: var(--text-secondary); text-decoration: none;
+    padding: 6px 10px; border-radius: 6px; transition: background .15s, color .15s;
+  }
+  .nav-links a:hover { background: var(--surface-hover); color: var(--text-primary); }
+  .nav-cta {
+    font-family: var(--font-mono); font-size: 11px;
+    padding: 7px 12px; border-radius: 999px;
+    background: var(--surface); color: var(--text-primary);
+    border: 1px solid var(--border); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .nav-cta .pulse { width: 6px; height: 6px; border-radius: 999px; background: var(--success); box-shadow: 0 0 0 0 rgba(0,255,159,.6); animation: pulse 2s ease-out infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0,255,159,.6);} 70% { box-shadow: 0 0 0 6px rgba(0,255,159,0);} 100% { box-shadow: 0 0 0 0 rgba(0,255,159,0);} }
+
+  /* HERO */
+  .hero { padding: 96px 0 64px; position: relative; }
+  .hero-eyebrow {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em;
+    color: var(--text-muted); text-transform: uppercase; margin-bottom: 24px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .hero-eyebrow .bar { width: 24px; height: 1px; background: var(--border-strong); display: inline-block; }
+  .hero h1 {
+    font-weight: 300; font-size: clamp(40px, 6.2vw, 72px);
+    line-height: 1.05; letter-spacing: -0.025em;
+    margin: 0 0 28px; color: var(--text-primary); max-width: 900px;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero h1 .sketch {
+    position: relative; white-space: nowrap;
+  }
+  .hero h1 .sketch::after {
+    content: ''; position: absolute; left: -2%; right: -2%; bottom: 4px;
+    height: 10px; background: rgba(0,255,159,0.18); z-index: -1; border-radius: 2px;
+    transform: rotate(-0.5deg);
+  }
+  .hero .lede {
+    font-size: 18px; line-height: 1.55; color: var(--text-secondary);
+    max-width: 640px; margin: 0 0 36px; font-weight: 400;
+  }
+  .hero-meta {
+    display: flex; gap: 14px; flex-wrap: wrap; align-items: center; font-size: 13px;
+    color: var(--text-muted);
+  }
+  .hero-meta .chip {
+    font-family: var(--font-mono); font-size: 11px;
+    padding: 5px 10px; border-radius: 999px;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text-primary);
+  }
+  .hero-actions { display: flex; gap: 10px; margin-top: 32px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: var(--font-sans); font-size: 13px; font-weight: 500;
+    height: 40px; padding: 0 18px; border-radius: 8px;
+    text-decoration: none; cursor: pointer; border: 1px solid transparent;
+    transition: background-color .15s, color .15s, border-color .15s;
+  }
+  .btn-primary { background: var(--accent); color: #041a12; border-color: var(--accent); font-weight: 600; box-shadow: var(--shadow-glow); }
+  .btn-primary:hover { background: var(--accent-dim); border-color: var(--accent-dim); }
+  .btn-secondary { background: var(--surface); color: var(--text-primary); border-color: var(--border); }
+  .btn-secondary:hover { background: var(--surface-hover); }
+  .btn-ghost { background: transparent; color: var(--text-secondary); }
+  .btn-ghost:hover { background: var(--surface-hover); color: var(--text-primary); }
+
+  /* HERO AVATAR RIGHT */
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: flex-start;
+  }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+  .hero-card {
+    border: 1px solid var(--border); background: var(--surface);
+    border-radius: 14px; padding: 18px;
+    box-shadow: var(--shadow-sm);
+  }
+  .avatar {
+    width: 100%; aspect-ratio: 1/1; border-radius: 10px;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(123,97,255,0.35) 0%, transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(0,255,159,0.25) 0%, transparent 60%),
+      var(--surface-alt);
+    position: relative; overflow: hidden; border: 1px solid var(--border-subtle);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-sans); font-weight: 300; font-size: 80px; color: var(--accent);
+    letter-spacing: -0.03em;
+  }
+  .avatar::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(230,237,247,0.08) 1px, transparent 0);
+    background-size: 14px 14px;
+  }
+  .hero-card-meta { margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+  .hero-card-meta .k { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .hero-card-meta .v { font-size: 13px; color: var(--text-primary); }
+
+  /* SECTIONS */
+  section.block { padding: 72px 0; border-top: 1px solid var(--border-subtle); }
+  .section-head {
+    display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 40px;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .section-label {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-muted);
+  }
+  .section-title {
+    font-size: 32px; font-weight: 300; letter-spacing: -0.02em; margin: 8px 0 0;
+    color: var(--text-primary); line-height: 1.2;
+  }
+  .section-kicker {
+    font-size: 14px; color: var(--text-secondary); max-width: 340px; text-align: right;
+  }
+
+  /* NOW */
+  .now-row {
+    display: grid; grid-template-columns: 120px 1fr; gap: 32px;
+    padding: 24px 0; border-bottom: 1px solid var(--border-subtle);
+  }
+  .now-row:last-child { border-bottom: none; }
+  .now-row .when { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); padding-top: 4px; }
+  .now-row .what h3 { margin: 0 0 4px; font-size: 16px; font-weight: 500; }
+  .now-row .what .org { font-size: 13px; color: var(--accent); margin-bottom: 8px; font-weight: 500; }
+  .now-row .what p { margin: 0; font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+  .now-row .what .tag-row { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-family: var(--font-mono); font-size: 10px; padding: 3px 8px;
+    border: 1px solid var(--border); border-radius: 999px; color: var(--text-muted);
+    background: var(--surface);
+  }
+
+  /* WORK / EXPERIENCE */
+  .exp-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  }
+  @media (max-width: 760px) { .exp-grid { grid-template-columns: 1fr; } }
+  .exp-card {
+    border: 1px solid var(--border); background: var(--surface);
+    border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm);
+    transition: border-color .15s, background .15s;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .exp-card:hover { border-color: var(--border-strong); background: var(--surface); }
+  .exp-card .org-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .exp-card h3 { margin: 0; font-size: 15px; font-weight: 500; }
+  .exp-card .role { font-size: 13px; color: var(--text-secondary); }
+  .exp-card .meta-row { display: flex; justify-content: space-between; gap: 12px; font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .exp-card p { margin: 0; font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .exp-status {
+    font-family: var(--font-mono); font-size: 10px;
+    padding: 2px 7px; border-radius: 999px;
+    background: var(--surface-alt); color: var(--text-muted); border: 1px solid var(--border-subtle);
+    white-space: nowrap;
+  }
+  .exp-status.live { background: rgba(0,255,159,0.1); color: var(--success); border-color: rgba(0,255,159,0.3); }
+
+  /* PROJECTS (featured, wide) */
+  .proj-wide {
+    display: grid; grid-template-columns: 280px 1fr; gap: 32px;
+    padding: 28px 0; border-bottom: 1px solid var(--border-subtle);
+    align-items: start;
+  }
+  .proj-wide:last-of-type { border-bottom: none; }
+  @media (max-width: 760px) { .proj-wide { grid-template-columns: 1fr; gap: 16px; } }
+  .proj-visual {
+    aspect-ratio: 16/10; border-radius: 10px; border: 1px solid var(--border);
+    background: var(--surface); overflow: hidden; position: relative;
+    box-shadow: var(--shadow-sm);
+  }
+  .proj-body h3 { margin: 0 0 6px; font-size: 20px; font-weight: 400; letter-spacing: -0.01em; }
+  .proj-body .proj-sub { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 14px; }
+  .proj-body p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin: 0 0 14px; }
+  .proj-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .proj-links { display: flex; gap: 14px; font-size: 13px; }
+  .proj-link { color: var(--accent); text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; border-bottom: 1px solid transparent; }
+  .proj-link:hover { border-bottom-color: var(--accent); }
+  .proj-award {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 10px; padding: 3px 9px;
+    background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.35); color: var(--warning);
+    border-radius: 999px; margin-bottom: 10px; letter-spacing: 0.04em; text-transform: uppercase;
+  }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  @media (max-width: 860px) { .skills-grid { grid-template-columns: repeat(2, 1fr); } }
+  .skill-col h4 {
+    margin: 0 0 12px; font-family: var(--font-mono); font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted);
+    font-weight: 500;
+  }
+  .skill-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .skill-col li { font-size: 13px; color: var(--text-primary); display: flex; align-items: center; gap: 8px; }
+  .skill-col li::before {
+    content: ''; width: 4px; height: 4px; border-radius: 999px;
+    background: var(--border-strong); display: inline-block;
+  }
+  .skill-col li.primary::before { background: var(--accent); }
+
+  /* PAPER CARD */
+  .paper {
+    display: grid; grid-template-columns: 60px 1fr auto; gap: 20px; align-items: center;
+    padding: 24px; border: 1px solid var(--border); background: var(--surface);
+    border-radius: 12px;
+  }
+  .paper-glyph {
+    width: 60px; height: 60px; border-radius: 8px;
+    background: var(--surface-alt); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 14px; font-weight: 500;
+    color: var(--text-secondary); letter-spacing: 0.06em;
+  }
+  .paper h3 { margin: 0 0 6px; font-size: 15px; font-weight: 500; line-height: 1.4; }
+  .paper .paper-meta { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* CONTACT */
+  .contact {
+    background: var(--surface-alt); border-radius: 16px; padding: 64px 48px; text-align: center;
+    border: 1px solid var(--border);
+  }
+  .contact h2 { margin: 0 0 16px; font-size: 36px; font-weight: 300; letter-spacing: -0.02em; }
+  .contact p { margin: 0 auto 28px; max-width: 480px; color: var(--text-secondary); font-size: 15px; }
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 560px; margin: 0 auto;
+  }
+  @media (max-width: 560px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px 14px; text-decoration: none; color: var(--text-primary);
+    display: flex; flex-direction: column; gap: 4px; transition: border-color .15s, background .15s;
+    text-align: left;
+  }
+  .contact-card:hover { border-color: var(--border-strong); background: var(--surface-hover); }
+  .contact-card .ck { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-card .cv { font-size: 13px; font-weight: 500; }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 0; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: var(--text-muted); flex-wrap: wrap; gap: 12px;
+  }
+  footer .f-right { font-family: var(--font-mono); letter-spacing: 0.04em; }
+
+  /* Sketch visual for water project */
+  .viz-water {
+    background:
+      linear-gradient(180deg, #0d1628 0%, #14233d 100%);
+    position: relative;
+  }
+  .viz-water svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .viz-stack {
+    background: var(--surface-alt);
+    display: flex; align-items: center; justify-content: center; padding: 12px;
+  }
+  .viz-stack .layers {
+    display: flex; flex-direction: column; gap: 6px; width: 70%;
+  }
+  .viz-stack .layer {
+    border: 1px solid var(--border); background: var(--surface);
+    border-radius: 6px; padding: 8px 10px;
+    font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .viz-stack .layer .b { width: 28px; height: 4px; border-radius: 999px; background: var(--accent); opacity: .6; }
+  .viz-gan { background: linear-gradient(135deg, #1a1530 0%, #0f1a2e 100%); position: relative; }
+  .viz-gan .circle { position: absolute; border-radius: 999px; border: 1px dashed var(--border-strong); }
+  .viz-research { background: var(--surface-alt); position: relative; overflow: hidden; }
+  .viz-research pre { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); margin: 18px; line-height: 1.6; white-space: pre-wrap; }
+  .viz-automation {
+    background:
+      radial-gradient(circle at 20% 20%, rgba(123,97,255,0.2), transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(0,255,159,0.15), transparent 40%),
+      var(--surface);
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <span class="dot"></span>
+      Ayesha Irshad
+    </a>
+    <div class="nav-links">
+      <a href="#now">Now</a>
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
+      <a href="#skills">Skills</a>
+      <a class="nav-cta" href="#contact">
+        <span class="pulse"></span>
+        Open to AI roles
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main id="top" class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow"><span class="bar"></span> AI engineer · researcher · Karachi, PK</div>
+    <div class="hero-grid">
+      <div>
+        <h1>
+          I build <span class="sketch">AI systems</span> that move from research paper to production — <em>in weeks, not quarters.</em>
+        </h1>
+        <p class="lede">
+          Fresh BS in Artificial Intelligence from FAST NUCES with 2+ years shipping real models. Currently an L2 AI Software Engineer collaborating with a Google research lead on multi-agent architectures. Published at IEEE INMIC 2.0, 2nd at TeknoFest 2024.
+        </p>
+        <div class="hero-meta">
+          <span class="chip">~90s from idea to prototype</span>
+          <span class="chip">LLMs · VLMs · CV</span>
+          <span class="chip">60% → 93% accuracy lift</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Start a conversation →</a>
+          <a class="btn btn-secondary" href="https://github.com/AyeshaIrshad1337" target="_blank" rel="noopener">GitHub →</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/ayesha-irshad/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="avatar">AI</div>
+        <div class="hero-card-meta">
+          <div>
+            <div class="k">Based</div>
+            <div class="v">Karachi, PK</div>
+          </div>
+          <div>
+            <div class="k">Status</div>
+            <div class="v" style="color: var(--success);">● Open — Remote AI</div>
+          </div>
+          <div>
+            <div class="k">Focus</div>
+            <div class="v">Agents · VLMs</div>
+          </div>
+          <div>
+            <div class="k">Years shipping</div>
+            <div class="v">2+</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- NOW -->
+  <section id="now" class="block">
+    <div class="section-head">
+      <div>
+        <div class="section-label">— Now</div>
+        <h2 class="section-title">What I'm working on this season.</h2>
+      </div>
+      <p class="section-kicker">Three threads, one question: how far can a small team push AI agents that actually reason?</p>
+    </div>
+
+    <div class="now-row">
+      <div class="when">Sept 2025 — now</div>
+      <div class="what">
+        <h3>Multi-agent architectures under NDA</h3>
+        <div class="org">SleepWellSystem · AI Engineer L2 (contract)</div>
+        <p>Partnering with a research lead at Google on reasoning and workflow automation for autonomous agents. Designing LLM integrations that hold up outside benchmark conditions.</p>
+        <div class="tag-row">
+          <span class="tag">agents</span>
+          <span class="tag">reasoning</span>
+          <span class="tag">LLM orchestration</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="now-row">
+      <div class="when">Jan 2024 — now</div>
+      <div class="what">
+        <h3>Climate.io — final year project going to production</h3>
+        <div class="org">FAST NUCES · 2nd at TeknoFest 2024</div>
+        <p>Water-quality assessment pipeline: VLM extracts context from water imagery, an LLM writes the environmental report. Shipped end-to-end on Hugging Face + FastAPI.</p>
+        <div class="tag-row">
+          <span class="tag">VLM</span>
+          <span class="tag">LLM</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">climate</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="now-row">
+      <div class="when">Feb 2024 — now</div>
+      <div class="what">
+        <h3>Fine-tuning LLaMA & image-to-text on Intel datasets</h3>
+        <div class="org">Intel Corporation · Student Brand Ambassador</div>
+        <p>Optimizing model performance and scalability across large Intel-provided datasets. Quietly one of the more educational things I do.</p>
+        <div class="tag-row">
+          <span class="tag">LLaMA</span>
+          <span class="tag">fine-tuning</span>
+          <span class="tag">i2t</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="block">
+    <div class="section-head">
+      <div>
+        <div class="section-label">— Experience</div>
+        <h2 class="section-title">Seven teams. Five time zones. One discipline.</h2>
+      </div>
+      <p class="section-kicker">From annotation work at Scale AI to research labs to contract agent engineering — I've seen AI from every angle of the stack.</p>
+    </div>
+
+    <div class="exp-grid">
+      <article class="exp-card">
+        <div class="org-row">
+          <h3>SleepWellSystem</h3>
+          <span class="exp-status live">● Current</span>
+        </div>
+        <div class="role">AI Software Engineer L2 · Contract</div>
+        <p>Building multi-agent reasoning systems with a Google research lead. Scalable LLM integrations for real-world workflows.</p>
+        <div class="meta-row"><span>Onsite · Pakistan</span><span>Sept 25 — now</span></div>
+      </article>
+
+      <article class="exp-card">
+        <div class="org-row">
+          <h3>Ahoy</h3>
+          <span class="exp-status">Completed</span>
+        </div>
+        <div class="role">AI Researcher</div>
+        <p>CV-based football analysis system with real-time object detection & tracking. Also: an NLP calling bot with speech recognition and dialogue.</p>
+        <div class="meta-row"><span>Remote</span><span>Jan — Aug 25</span></div>
+      </article>
+
+      <article class="exp-card">
+        <div class="org-row">
+          <h3>Intel Corporation</h3>
+          <span class="exp-status live">● Active</span>
+        </div>
+        <div class="role">Student Brand Ambassador</div>
+        <p>Fine-tuning LLaMA and image-to-text models on Intel datasets, optimizing for scalability and downstream deployment.</p>
+        <div class="meta-row"><span>Remote · CA, USA</span><span>Feb 24 — now</span></div>
+      </article>
+
+      <article class="exp-card">
+        <div class="org-row">
+          <h3>Axillio</h3>
+          <span class="exp-status live">● Active</span>
+        </div>
+        <div class="role">Junior AI/ML Engineer</div>
+        <p>Lifted model accuracy 60% → 93% with YOLO, ResNet, Inception. Cut video generation from 2 days to 10 minutes. Built the Node/Express API around it.</p>
+        <div class="meta-row"><span>Remote · Lahore</span><span>Jan 24 — now</span></div>
+      </article>
+
+      <article class="exp-card">
+        <div class="org-row">
+          <h3>FAST NUCES — Karachi</h3>
+          <span class="exp-status live">● Active</span>
+        </div>
+        <div class="role">Junior AI Researcher</div>
+        <p>UAV modeling with LSTM, brain-therapy CNN analysis, satellite image dehazing, GAN-based recommenders. Two research codebases on GitHub.</p>
+        <div class="meta-row"><span>Hybrid · Karachi</span><span>Jun 23 — now</span></div>
+      </article>
+
+      <article class="exp-card">
+        <div class="org-row">
+          <h3>Scale AI</h3>
+          <span class="exp-status">Completed</span>
+        </div>
+        <div class="role">Senior Data Annotator</div>
+        <p>Where the discipline for clean training data came from. Senior-tier review and annotation for ML pipelines.</p>
+        <div class="meta-row"><span>Remote · SF</span><span>May — Aug 23</span></div>
+      </article>
+
+      <article class="exp-card">
+        <div class="org-row">
+          <h3>DreamSleepApp</h3>
+          <span class="exp-status">Completed</span>
+        </div>
+        <div class="role">Software Engineer Intern</div>
+        <p>Automated video + audio editing workflows with MovieLip and pydub. First taste of end-to-end media pipelines.</p>
+        <div class="meta-row"><span>Remote · Chicago</span><span>Aug — Oct 23</span></div>
+      </article>
+
+      <article class="exp-card" style="background: var(--surface-alt); border-style: dashed;">
+        <div class="org-row">
+          <h3 style="color: var(--text-secondary);">+ Open to your team</h3>
+        </div>
+        <div class="role">Remote AI roles</div>
+        <p>Agent systems, VLM/LLM product work, applied research. Pakistan-based, fully remote, full-time.</p>
+        <div class="meta-row"><span>Anywhere</span><span>Available now</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="block">
+    <div class="section-head">
+      <div>
+        <div class="section-label">— Projects</div>
+        <h2 class="section-title">Selected work, with the parts that hurt left in.</h2>
+      </div>
+      <p class="section-kicker">Four featured projects. Each one shipped, each one taught me something I still use.</p>
+    </div>
+
+    <article class="proj-wide">
+      <div class="proj-visual viz-water">
+        <svg viewBox="0 0 400 250" preserveAspectRatio="none">
+          <path d="M0,180 Q100,140 200,170 T400,160 L400,250 L0,250 Z" fill="#22d3ee" opacity="0.18"/>
+          <path d="M0,200 Q100,170 200,190 T400,185 L400,250 L0,250 Z" fill="#22d3ee" opacity="0.3"/>
+          <g transform="translate(150,70)">
+            <rect width="100" height="60" rx="6" fill="#111826" stroke="#2a3855"/>
+            <text x="50" y="28" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#e6edf7">VLM → LLM</text>
+            <text x="50" y="44" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#00ff9f">contamination: 0.82</text>
+          </g>
+          <circle cx="80" cy="110" r="3" fill="#00ff9f"/>
+          <circle cx="320" cy="130" r="3" fill="#00ff9f"/>
+          <circle cx="60" cy="60" r="2" fill="#7b61ff"/>
+        </svg>
+      </div>
+      <div class="proj-body">
+        <div class="proj-award">★ 2nd place · TeknoFest 2024</div>
+        <h3>Climate.io</h3>
+        <div class="proj-sub">Final year project · 2024 — ongoing · IEEE INMIC 2.0 paper</div>
+        <p>
+          A water-quality assessment pipeline that turns a photo of contaminated water into a readable environmental report. A vision-language model extracts visual evidence, a large language model writes the analysis, and both get packaged into an end-to-end system deployed on Hugging Face and FastAPI.
+        </p>
+        <p>
+          Also won Ideathon UBIT. Published the comparative analysis between VLMs and LLMs for climate monitoring at IEEE INMIC 2.0.
+        </p>
+        <div class="proj-stack">
+          <span class="tag">VLM</span><span class="tag">LLM</span><span class="tag">FastAPI</span><span class="tag">HuggingFace</span><span class="tag">climate</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link" href="#research">Read paper →</a>
+          <a class="proj-link" href="https://github.com/Climate-io" target="_blank" rel="noopener">github.com/Climate-io →</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="proj-wide">
+      <div class="proj-visual viz-research">
+        <pre>&gt; query: "explain GAN collapse"
+&gt; reformulated:
+  "Describe mode collapse
+   in generative adversarial
+   networks, with 2 mitigation
+   strategies."
+&gt; retrieved: 6 docs
+&gt; latency: 340ms</pre>
+      </div>
+      <div class="proj-body">
+        <h3>ResearchEase</h3>
+        <div class="proj-sub">AI research tool · 2024</div>
+        <p>
+          An auto-prompting layer that rewrites lazy user queries into prompts that actually work. Built on Hugging Face + LangChain + LangSmith + ChromaDB, with a Flask backend and a web UI. Removed the prompt-engineering step for researchers reading across dozens of papers.
+        </p>
+        <div class="proj-stack">
+          <span class="tag">LangChain</span><span class="tag">ChromaDB</span><span class="tag">LangSmith</span><span class="tag">Flask</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link" href="https://github.com/AyeshaIrshad1337/ResearchEase" target="_blank" rel="noopener">ResearchEase →</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="proj-wide">
+      <div class="proj-visual viz-gan">
+        <div class="circle" style="width:140px;height:140px;top:20px;left:30px;"></div>
+        <div class="circle" style="width:180px;height:180px;top:40px;left:180px;"></div>
+        <div class="circle" style="width:80px;height:80px;top:140px;left:100px; border-style: solid; border-color: var(--accent);"></div>
+        <div style="position:absolute; top: 20px; left: 20px; font-family: var(--font-mono); font-size: 10px; color: var(--accent); letter-spacing: 0.08em;">COLLA-GAN / ACAE</div>
+        <div style="position:absolute; bottom: 16px; right: 20px; font-family: var(--font-mono); font-size: 10px; color: var(--text-muted);">user × item × context</div>
+      </div>
+      <div class="proj-body">
+        <h3>Recommendation System on GANs</h3>
+        <div class="proj-sub">Research project · MovieLens · 2023</div>
+        <p>
+          Four models compared on implicit feedback — BPR, APR, CollaGAN, ACAE — benchmarked across Precision, Recall, HR, NDCG, MAP, and F1. Full adversarial training loop, evaluation plots auto-exported to PDF. My introduction to reading a recsys paper and rebuilding it from scratch.
+        </p>
+        <div class="proj-stack">
+          <span class="tag">CollaGAN</span><span class="tag">ACAE</span><span class="tag">BPR</span><span class="tag">APR</span><span class="tag">MovieLens</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link" href="https://github.com/AyeshaIrshad1337/Recommendation-System-Based-On-GAN" target="_blank" rel="noopener">Recommendation-System-Based-On-GAN →</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="proj-wide">
+      <div class="proj-visual viz-automation" style="display:flex; flex-direction:column; padding: 16px; gap: 8px;">
+        <div style="display:flex; gap: 8px;">
+          <span class="tag">WhatsApp bot</span>
+          <span class="tag">Email</span>
+        </div>
+        <div style="display:flex; gap: 8px;">
+          <span class="tag">Files</span>
+          <span class="tag">Video</span>
+          <span class="tag">Certificates</span>
+        </div>
+        <div style="margin-top:auto; font-family: var(--font-mono); font-size: 11px; color: var(--accent);">—80% manual work</div>
+      </div>
+      <div class="proj-body">
+        <h3>Automation Suite</h3>
+        <div class="proj-sub">Productivity tools · 2023</div>
+        <p>
+          Five small programs that each killed a recurring task: WhatsApp bot, email automation, file organizer, video editing, certificate generator. Together they cut repetitive work by up to 80% for the teams using them.
+        </p>
+        <div class="proj-stack">
+          <span class="tag">Python</span><span class="tag">automation</span><span class="tag">tooling</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link" href="https://github.com/AyeshaIrshad1337/WhatsApp_Automation" target="_blank" rel="noopener">WhatsApp_Automation →</a>
+          <a class="proj-link" href="https://github.com/AyeshaIrshad1337/Auto-File-Organizer" target="_blank" rel="noopener">Auto-File-Organizer →</a>
+          <a class="proj-link" href="https://github.com/AyeshaIrshad1337/Mail_Scraper" target="_blank" rel="noopener">Mail_Scraper →</a>
+        </div>
+      </div>
+    </article>
+
+    <div style="margin-top: 32px;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; gap: 12px; flex-wrap: wrap;">
+        <div class="section-label">Private · under NDA or client work</div>
+        <div style="font-size: 12px; color: var(--text-muted);">Happy to walk through these in a call</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;" class="priv-grid">
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> Nexus</div>
+          <div class="pr-desc">Multi-agent reasoning system for workflow automation.</div>
+          <div class="pr-tag">agents · LLM</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> getspire</div>
+          <div class="pr-desc">Productized AI tooling — internal codebase.</div>
+          <div class="pr-tag">product · AI</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> ResearchEase</div>
+          <div class="pr-desc">Auto-prompting layer for literature Q&amp;A (LangChain + ChromaDB + LangSmith).</div>
+          <div class="pr-tag">RAG · research</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> Concierge</div>
+          <div class="pr-desc">Conversational assistant with long-context memory.</div>
+          <div class="pr-tag">agents · NLP</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> algolark</div>
+          <div class="pr-desc">Algorithmic systems sandbox — applied ML infra.</div>
+          <div class="pr-tag">infra</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> DocGen</div>
+          <div class="pr-desc">Document generation pipeline with LLM-assisted layout.</div>
+          <div class="pr-tag">LLM · docs</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> Multi_Speaker_Transcript</div>
+          <div class="pr-desc">Speaker diarization + transcription with Whisper pipelines.</div>
+          <div class="pr-tag">speech · Whisper</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> RAG-model</div>
+          <div class="pr-desc">Retrieval-augmented generation harness with evaluation.</div>
+          <div class="pr-tag">RAG</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> vector-embedding</div>
+          <div class="pr-desc">Embedding service &amp; benchmarks across models.</div>
+          <div class="pr-tag">embeddings</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> CV-Matching</div>
+          <div class="pr-desc">Resume-to-JD semantic matcher for hiring pipelines.</div>
+          <div class="pr-tag">NLP · hiring</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> Brain-Therapy</div>
+          <div class="pr-desc">CNN analysis for brain-therapy research (FAST lab).</div>
+          <div class="pr-tag">CNN · medical</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> PlasticGAN</div>
+          <div class="pr-desc">GAN implementation for plastic-waste imagery.</div>
+          <div class="pr-tag">GAN · climate</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> invention</div>
+          <div class="pr-desc">Early-stage prototype — details on request.</div>
+          <div class="pr-tag">exploratory</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> Image_Classification</div>
+          <div class="pr-desc">Client image-classification pipeline (Axillio).</div>
+          <div class="pr-tag">CV · production</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> Erase-and-Replace</div>
+          <div class="pr-desc">Inpainting pipeline for video editing workflows.</div>
+          <div class="pr-tag">CV · video</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> Internship_Work</div>
+          <div class="pr-desc">Consolidated internship deliverables (private).</div>
+          <div class="pr-tag">archive</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> Remote_jobs_Ai</div>
+          <div class="pr-desc">Job-market analysis &amp; scraping for AI roles.</div>
+          <div class="pr-tag">data · scraping</div>
+        </div>
+        <div class="priv-repo">
+          <div class="pr-head"><span class="pr-lock">🔒</span> IR</div>
+          <div class="pr-desc">Information-retrieval coursework &amp; experiments.</div>
+          <div class="pr-tag">IR</div>
+        </div>
+      </div>
+      <style>
+        .priv-repo {
+          display: block; padding: 14px;
+          border: 1px solid var(--border); background: var(--surface-alt);
+          border-radius: 10px; color: var(--text-primary);
+          position: relative;
+        }
+        .priv-repo .pr-head {
+          font-size: 13px; font-weight: 500; margin-bottom: 4px;
+          display: flex; align-items: center; gap: 6px;
+        }
+        .priv-repo .pr-lock {
+          font-size: 10px; opacity: 0.6;
+        }
+        .priv-repo .pr-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px; }
+        .priv-repo .pr-tag { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.04em; }
+        @media (max-width: 760px) { .priv-grid { grid-template-columns: 1fr !important; } }
+      </style>
+    </div>
+
+    <div style="margin-top: 28px;">
+      <div class="section-label" style="margin-bottom: 14px;">Public · from <a href="https://github.com/AyeshaIrshad1337" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none;">github.com/AyeshaIrshad1337</a> · 100+ repos</div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;" class="more-repos">
+        <a class="mini-repo" href="https://github.com/AyeshaIrshad1337/Woven" target="_blank" rel="noopener">
+          <div class="mr-name">Woven</div>
+          <div class="mr-desc">Collaborative-filtering book recommender on Streamlit</div>
+          <div class="mr-tag">Python · Streamlit</div>
+        </a>
+        <a class="mini-repo" href="https://github.com/AyeshaIrshad1337/SmartPick" target="_blank" rel="noopener">
+          <div class="mr-name">SmartPick</div>
+          <div class="mr-desc">Genetic-algorithm book recommender that learns from feedback</div>
+          <div class="mr-tag">GA · ML</div>
+        </a>
+        <a class="mini-repo" href="https://github.com/AyeshaIrshad1337/EQ-Insight" target="_blank" rel="noopener">
+          <div class="mr-name">EQ-Insight</div>
+          <div class="mr-desc">Flask app for emotional-intelligence inference</div>
+          <div class="mr-tag">Flask · Python 3.10</div>
+        </a>
+        <a class="mini-repo" href="https://github.com/AyeshaIrshad1337/image-dehazing" target="_blank" rel="noopener">
+          <div class="mr-name">image-dehazing</div>
+          <div class="mr-desc">DehazeNet for satellite imagery — environmental monitoring</div>
+          <div class="mr-tag">CV · satellite</div>
+        </a>
+        <a class="mini-repo" href="https://github.com/AyeshaIrshad1337/MoodFlow" target="_blank" rel="noopener">
+          <div class="mr-name">MoodFlow</div>
+          <div class="mr-desc">Next.js mood-tracking app</div>
+          <div class="mr-tag">Next.js · TS</div>
+        </a>
+        <a class="mini-repo" href="https://github.com/AyeshaIrshad1337/PhishGuard" target="_blank" rel="noopener">
+          <div class="mr-name">PhishGuard</div>
+          <div class="mr-desc">Phishing-URL detection classifier</div>
+          <div class="mr-tag">security · ML</div>
+        </a>
+        <a class="mini-repo" href="https://github.com/AyeshaIrshad1337/Expert-Trade-Analyzer---ETA" target="_blank" rel="noopener">
+          <div class="mr-name">Expert Trade Analyzer</div>
+          <div class="mr-desc">Trading signal & analysis toolkit</div>
+          <div class="mr-tag">finance · Python</div>
+        </a>
+        <a class="mini-repo" href="https://github.com/AyeshaIrshad1337/Simple-Text-QnA" target="_blank" rel="noopener">
+          <div class="mr-name">Simple-Text-QnA</div>
+          <div class="mr-desc">Text-to-question-answer generation</div>
+          <div class="mr-tag">NLP</div>
+        </a>
+        <a class="mini-repo" href="https://github.com/AyeshaIrshad1337/ImageCompression" target="_blank" rel="noopener">
+          <div class="mr-name">ImageCompression</div>
+          <div class="mr-desc">Sparse autoencoder compression in TensorFlow</div>
+          <div class="mr-tag">TF · autoencoder</div>
+        </a>
+        <a class="mini-repo" href="https://github.com/AyeshaIrshad1337/Mail_Scraper" target="_blank" rel="noopener">
+          <div class="mr-name">Mail_Scraper</div>
+          <div class="mr-desc">LinkedIn email scraper for hiring pipelines</div>
+          <div class="mr-tag">scraping</div>
+        </a>
+        <a class="mini-repo" href="https://github.com/AyeshaIrshad1337/WhatsApp_Automation" target="_blank" rel="noopener">
+          <div class="mr-name">WhatsApp_Automation</div>
+          <div class="mr-desc">Scheduled & trigger-based messaging bot</div>
+          <div class="mr-tag">automation</div>
+        </a>
+        <a class="mini-repo" href="https://github.com/AyeshaIrshad1337/KRR_Project" target="_blank" rel="noopener">
+          <div class="mr-name">KRR_Project</div>
+          <div class="mr-desc">Knowledge representation & reasoning coursework</div>
+          <div class="mr-tag">symbolic AI</div>
+        </a>
+      </div>
+    </div>
+    <style>
+      .mini-repo {
+        display: block; padding: 14px; text-decoration: none;
+        border: 1px solid var(--border); background: var(--surface);
+        border-radius: 10px; color: var(--text-primary);
+        transition: border-color .15s, background .15s, transform .15s;
+      }
+      .mini-repo:hover { border-color: var(--border-strong); background: var(--surface-hover); transform: translateY(-1px); }
+      .mini-repo .mr-name { font-size: 13px; font-weight: 500; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+      .mini-repo .mr-name::before { content: ''; width: 6px; height: 6px; border-radius: 999px; background: var(--accent); display: inline-block; }
+      .mini-repo .mr-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px; }
+      .mini-repo .mr-tag { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.04em; }
+      @media (max-width: 760px) { .more-repos { grid-template-columns: 1fr !important; } }
+    </style>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research" class="block">
+    <div class="section-head">
+      <div>
+        <div class="section-label">— Publication</div>
+        <h2 class="section-title">Published research.</h2>
+      </div>
+    </div>
+    <a class="paper" href="#" style="text-decoration:none;">
+      <div class="paper-glyph">IEEE</div>
+      <div>
+        <h3>A Comparative Analysis Between Visual Language and Large Language Models to Monitor Contaminated Water in the Face of Climate Change</h3>
+        <div class="paper-meta">INMIC 2.0 · Paper 2024386402 · Conference 64792X · Accepted, IEEE Xplore</div>
+      </div>
+      <div style="color: var(--accent); font-size: 13px; font-weight: 500;">View →</div>
+    </a>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="block">
+    <div class="section-head">
+      <div>
+        <div class="section-label">— Toolkit</div>
+        <h2 class="section-title">What I reach for.</h2>
+      </div>
+      <p class="section-kicker">Filled dots are the ones I use weekly. The rest I'm fluent in but don't write love letters about.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <h4>Languages</h4>
+        <ul>
+          <li class="primary">Python</li>
+          <li class="primary">JavaScript</li>
+          <li>C / C++</li>
+          <li>Java</li>
+          <li>AssemblyScript</li>
+          <li>PowerShell</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>AI / ML</h4>
+        <ul>
+          <li class="primary">PyTorch</li>
+          <li class="primary">TensorFlow</li>
+          <li class="primary">LangChain</li>
+          <li class="primary">Hugging Face</li>
+          <li>scikit-learn · Keras</li>
+          <li>OpenCV · mlflow</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>Backend</h4>
+        <ul>
+          <li class="primary">FastAPI</li>
+          <li class="primary">Flask</li>
+          <li>Django</li>
+          <li>Node · Express</li>
+          <li>JWT · REST</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>Data & Infra</h4>
+        <ul>
+          <li class="primary">MongoDB</li>
+          <li>MySQL · SQLite · Oracle</li>
+          <li class="primary">Docker</li>
+          <li>Git · GitHub</li>
+          <li>Linux · Vercel</li>
+          <li>Pandas · NumPy · Plotly</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+      <div style="padding: 16px 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface);">
+        <div class="section-label" style="margin-bottom: 6px;">Education</div>
+        <div style="font-size: 14px; font-weight: 500;">FAST National University</div>
+        <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">BS Artificial Intelligence · GPA 3.0 · CV, NLP, ANNs, Parallel Computing</div>
+      </div>
+      <div style="padding: 16px 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface);">
+        <div class="section-label" style="margin-bottom: 6px;">Certifications</div>
+        <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.7;">Data Science · ML Specialization · Mathematics for ML</div>
+      </div>
+      <div style="padding: 16px 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface);">
+        <div class="section-label" style="margin-bottom: 6px;">Leadership</div>
+        <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.7;">Tech Director, Procom24 · ACM · IEEE</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="block">
+    <div class="contact">
+      <div class="section-label" style="margin-bottom: 8px;">— Say hello</div>
+      <h2>Let's build something that ships.</h2>
+      <p>Looking for a remote AI engineer who has read the papers and also shipped the thing? I'd love to hear what you're working on.</p>
+      <div class="contact-grid">
+        <a class="contact-card" href="/cdn-cgi/l/email-protection#a5c4dcc0d6cdc4ccd1d6cdc4c1949791e5c2c8c4ccc98bc6cac8">
+          <span class="ck">Email</span>
+          <span class="cv"><span class="__cf_email__" data-cfemail="d6b7afb3a5beb7bfa2a5beb7b2e7e4e296b1bbb7bfbaf8b5b9bb">[email&#160;protected]</span></span>
+        </a>
+        <a class="contact-card" href="https://www.linkedin.com/in/ayesha-irshad/" target="_blank" rel="noopener">
+          <span class="ck">LinkedIn</span>
+          <span class="cv">in/ayesha-irshad →</span>
+        </a>
+        <a class="contact-card" href="https://github.com/AyeshaIrshad1337" target="_blank" rel="noopener">
+          <span class="ck">GitHub</span>
+          <span class="cv">AyeshaIrshad1337 →</span>
+        </a>
+      </div>
+      <div style="margin-top: 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">
+        +92 305 2023022 · Karachi, Pakistan · UTC+5
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 Ayesha Irshad — built with the Spire design system.</div>
+    <div class="f-right">last updated · Apr 2026</div>
+  </footer>
+
+</main>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
