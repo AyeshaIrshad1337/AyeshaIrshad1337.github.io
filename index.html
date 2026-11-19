@@ -11,21 +11,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <script>document.documentElement.classList.add('js');</script>
 <style>
-/* Three acts, three palettes: paper (the past), night (the present), flare (what's next). */
-@property --bg{syntax:'<color>';inherits:true;initial-value:#f1ece1}
-@property --ink{syntax:'<color>';inherits:true;initial-value:#17140f}
-@property --dim{syntax:'<color>';inherits:true;initial-value:#5d574c}
-@property --mute{syntax:'<color>';inherits:true;initial-value:#948c7d}
-@property --line{syntax:'<color>';inherits:true;initial-value:#d6cfbf}
-@property --acc{syntax:'<color>';inherits:true;initial-value:#e8421a}
+/* Three acts, three palettes: sky paper (the past), navy night (the present), dawn blue (what's next). */
+@property --bg{syntax:'<color>';inherits:true;initial-value:#eef2f7}
+@property --ink{syntax:'<color>';inherits:true;initial-value:#0f1b2d}
+@property --dim{syntax:'<color>';inherits:true;initial-value:#4a586e}
+@property --mute{syntax:'<color>';inherits:true;initial-value:#5c6a82}
+@property --line{syntax:'<color>';inherits:true;initial-value:#d3dbe6}
+@property --acc{syntax:'<color>';inherits:true;initial-value:#1f4fff}
 :root{
-  --bg:#f1ece1;--ink:#17140f;--dim:#5d574c;--mute:#948c7d;--line:#d6cfbf;--acc:#e8421a;
+  --bg:#eef2f7;--ink:#0f1b2d;--dim:#4a586e;--mute:#5c6a82;--line:#d3dbe6;--acc:#1f4fff;
   --serif:'Fraunces',Georgia,serif;--sans:'Instrument Sans',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;
   --ease:cubic-bezier(.2,.7,.2,1);
   transition:--bg .9s var(--ease),--ink .9s var(--ease),--dim .9s var(--ease),--mute .9s var(--ease),--line .9s var(--ease),--acc .9s var(--ease);
 }
-:root[data-theme=night]{--bg:#0b0e19;--ink:#f6f2e8;--dim:#d3cec1;--mute:#a09c93;--line:#30364a;--acc:#ff7a4d}
-:root[data-theme=flare]{--bg:#e8421a;--ink:#170a04;--dim:#2b0d04;--mute:#4a1707;--line:#c23412;--acc:#fff3e2}
+:root[data-theme=night]{--bg:#081226;--ink:#f2f6fc;--dim:#cdd6e6;--mute:#93a0b8;--line:#2c3d60;--acc:#5fd4ff}
+:root[data-theme=flare]{--bg:#bcd2ff;--ink:#0b1730;--dim:#2f3f5e;--mute:#44536f;--line:#93b1f0;--acc:#1638c4}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;overflow-x:clip}
@@ -37,9 +37,10 @@ a{color:inherit;text-decoration:none}
 em{font-style:italic;color:var(--acc)}
 
 /* the graph that grows behind the story */
-#graph{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;transition:opacity .9s}
+#graph{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.7;transition:opacity .9s}
 /* light text on dark needs more weight, more size and a quieter backdrop */
 :root[data-theme=night] #graph{opacity:.42}
+:root[data-theme=flare] #graph{opacity:.35}
 #now .beat h3,#now .side h2,#now .work summary h3{font-weight:480;letter-spacing:-.015em}
 #now .beat p,#now .work details p{font-size:17.5px;line-height:1.7;font-weight:450}
 #now .kit p{font-size:16.5px;font-weight:450}
@@ -47,7 +48,7 @@ em{font-style:italic;color:var(--acc)}
 #progress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:60;background:var(--acc);transform-origin:0 50%;transform:scaleX(0)}
 
 /* nav */
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 32px;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 32px;background:var(--bg)}
 .brand{display:inline-flex;align-items:center;gap:12px;font-family:var(--serif);font-size:19px;font-weight:500;letter-spacing:-.01em}
 .brand img{width:34px;height:34px;border-radius:50%;object-fit:contain;border:1px solid var(--line);background:var(--bg);transition:transform .5s var(--ease)}
 .brand:hover img{transform:rotate(-12deg) scale(1.12)}
@@ -70,16 +71,22 @@ em{font-style:italic;color:var(--acc)}
 .hud{position:fixed;left:24px;bottom:18px;z-index:50;font-family:var(--mono);font-size:11px;color:var(--mute);display:flex;gap:10px;align-items:center;background:var(--bg);padding:6px 10px;border-radius:999px}
 .hud b{font-weight:500;color:var(--ink)}
 .hud i{width:6px;height:6px;border-radius:50%;background:var(--acc)}
-@media(max-width:700px){.hud{left:16px;bottom:12px;font-size:10px}.nav{padding:10px 16px}#graph{opacity:.6}.wrap{padding:0 20px}}
+@media(max-width:700px){.hud{left:16px;bottom:12px;font-size:10px}.nav{padding:10px 16px}#graph{opacity:.6}.hud{display:none}.brand{font-size:17px}.cta{padding:8px 11px}.wrap{padding:0 20px}}
 
 /* prologue */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-block:120px 90px}
-.hero h1{font-family:var(--serif);font-weight:350;font-size:clamp(44px,7.4vw,108px);line-height:.98;letter-spacing:-.04em;margin:22px 0 34px;max-width:1000px}
+.hero h1{font-family:var(--serif);font-weight:350;font-size:clamp(42px,6.6vw,96px);line-height:.98;letter-spacing:-.04em;margin:20px 0 28px;max-width:1000px}
 .hero h1 span{display:block}
 .js .hero h1 span{opacity:0;transform:translateY(40px);animation:rise 1.1s var(--ease) forwards}
 .js .hero h1 span:nth-child(2){animation-delay:.9s}
 @keyframes rise{to{opacity:1;transform:none}}
-.lede{max-width:540px;font-size:18px;color:var(--dim);margin:0 0 36px}
+.lede{max-width:540px;font-size:18px;color:var(--dim);margin:0 0 30px}
+.glance{list-style:none;margin:0 0 34px;padding:18px 0 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:24px;max-width:1000px;font-size:15.5px;font-weight:500;line-height:1.4}
+.glance .mono{display:block;margin-bottom:5px;font-weight:400}
+@media(max-width:760px){.glance{grid-template-columns:1fr 1fr;gap:18px}}
+.acts{display:flex;flex-wrap:wrap;align-items:center;gap:30px}
+.nav-r{display:flex;align-items:center;gap:22px}.cv{font-size:14px}
+@media(max-width:700px){.cv{display:none}}
 .lede b{color:var(--ink);font-weight:500}
 .go{display:inline-flex;align-items:center;gap:14px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
 .go i{position:relative;width:1px;height:54px;background:var(--line);overflow:hidden}
@@ -105,6 +112,8 @@ em{font-style:italic;color:var(--acc)}
 .beat p{margin:0 0 14px;color:var(--dim);font-size:16.5px}
 .beat p b{color:var(--ink);font-weight:500}
 .fact{display:block;padding-left:14px;border-left:2px solid var(--acc);line-height:1.7}
+.fact+.fact{margin-top:12px}
+.org{display:block;font-family:var(--sans);font-size:17px;font-weight:600;letter-spacing:-.005em;line-height:1.35;color:var(--ink);margin-bottom:1px}
 .fact b{color:var(--ink);font-weight:500}
 .big{font-family:var(--serif);font-weight:300;font-size:clamp(64px,10vw,140px);line-height:.9;letter-spacing:-.06em;margin:0 0 20px;white-space:nowrap}
 .big small{font-size:.42em;color:var(--acc);letter-spacing:-.02em}
@@ -131,6 +140,8 @@ em{font-style:italic;color:var(--acc)}
 .work summary::-webkit-details-marker{display:none}
 .work summary span{font-family:var(--mono);font-size:11.5px;color:var(--mute)}
 .work summary h3{font-family:var(--serif);font-weight:400;font-size:clamp(21px,2.4vw,29px);line-height:1.15;letter-spacing:-.025em;margin:0;transition:transform .4s var(--ease),color .3s}
+
+.work summary h3 small{display:block;font-family:var(--sans);font-size:15px;font-weight:450;letter-spacing:0;line-height:1.4;color:var(--dim);margin-top:7px}
 .work summary::after{content:'+';font-family:var(--mono);font-size:20px;color:var(--mute);transition:transform .4s var(--ease),color .3s}
 .work summary:hover h3{transform:translateX(8px)}
 .work details[open] summary h3,.work details[open] summary::after{color:var(--acc)}
@@ -148,9 +159,9 @@ em{font-style:italic;color:var(--acc)}
 
 /* act three */
 .end{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-block:16vh 12vh}
-.end h2{font-family:var(--serif);font-weight:350;font-size:clamp(52px,10vw,150px);line-height:.92;letter-spacing:-.05em;margin:18px 0 34px}
-.end p{max-width:520px;font-size:18px;color:var(--dim);margin:0 0 40px}
-.mail{position:relative;align-self:flex-start;font-family:var(--serif);font-size:clamp(22px,3.8vw,48px);letter-spacing:-.03em;word-break:break-all}
+.end h2{font-family:var(--serif);font-weight:380;font-size:clamp(52px,10vw,150px);line-height:.92;letter-spacing:-.05em;margin:18px 0 34px}
+.end p{max-width:520px;font-size:19px;color:var(--dim);margin:0 0 40px}
+.mail{color:var(--acc);position:relative;align-self:flex-start;font-family:var(--serif);font-size:clamp(22px,3.8vw,48px);letter-spacing:-.03em;word-break:break-all}
 .mail::after{content:'';position:absolute;left:0;bottom:-4px;height:2px;width:100%;background:currentColor;transform-origin:0 50%;transition:transform .5s var(--ease)}
 .mail:hover::after{transform:scaleX(.2)}
 .soc{display:flex;flex-wrap:wrap;gap:30px;margin-top:38px;align-items:center;font-size:16px}
@@ -170,7 +181,7 @@ footer{position:relative;z-index:1;display:flex;justify-content:space-between;fl
 
 <nav class="nav">
   <a class="brand" href="#top"><img src="image.png" alt=""/>Ayesha Irshad</a>
-  <a class="cta" href="#next"><i></i>Open to AI roles</a>
+  <span class="nav-r"><a class="lnk cv" href="https://drive.google.com/file/d/1BBfrr9IwLIgq-DGEpn9WsEtf6PwRnRUQ/view?usp=sharing" target="_blank" rel="noopener">Résumé ↗</a><a class="cta" href="#next"><i></i>Open to AI roles</a></span>
 </nav>
 
 <nav class="rail" aria-label="Chapters">
@@ -189,7 +200,17 @@ footer{position:relative;z-index:1;display:flex;justify-content:space-between;fl
   <div class="mono">AI engineer · Karachi, Pakistan</div>
   <h1><span>I started by <em>labelling</em> data.</span><span>Now I build machines that <em>reason</em> about it.</span></h1>
   <p class="lede">I'm <b>Ayesha</b>. Two-plus years of shipping models, agents and knowledge graphs. This is the story so far, in five chapters — the graph behind this page grows as you read.</p>
-  <a class="go" href="#labels"><i></i>Scroll to begin</a>
+  <ul class="glance">
+    <li><span class="mono">Now</span>Research Team Lead, building agents and knowledge graphs</li>
+    <li><span class="mono">Published</span>IEEE INMIC 2024</li>
+    <li><span class="mono">Award</span>2nd place, TeknoFest 2024</li>
+    <li><span class="mono">Stack</span>Python · LangGraph · PostgreSQL</li>
+  </ul>
+  <div class="acts">
+    <a class="go" href="#labels"><i></i>Scroll to begin</a>
+    <a class="lnk" href="#now">Skip to current work →</a>
+    <a class="lnk" href="https://drive.google.com/file/d/1BBfrr9IwLIgq-DGEpn9WsEtf6PwRnRUQ/view?usp=sharing" target="_blank" rel="noopener">Résumé ↗</a>
+  </div>
   <div class="note">one data point. keep scrolling.</div>
 </header>
 
@@ -201,21 +222,25 @@ footer{position:relative;z-index:1;display:flex;justify-content:space-between;fl
       <div class="beat rv">
         <h3>My first job in AI was labelling training data.</h3>
         <p>Before any model exists, someone decides what the right answer looks like. For a summer, that someone was me.</p>
-        <span class="mono fact"><b>May — Aug 2023</b> · Scale AI · Data Annotator, part-time</span>
+        <p>It is slow, careful work, and it teaches one thing early: a model can only be as right as the examples it learns from. I have not stopped thinking about data that way since.</p>
+        <div class="fact"><b class="org">Scale AI</b><span class="mono"><b>May — Aug 2023</b> · Data Annotator, part-time</span></div>
       </div>
       <div class="beat rv">
         <h3>Then I automated the boring parts.</h3>
-        <p>Video and audio editing workflows, rebuilt as scripts with MoviePy and pydub.</p>
-        <span class="mono fact"><b>Aug — Oct 2023</b> · DreamSleep App · AI Software Engineer, part-time</span>
+        <p>The app needed the same video and audio edits made over and over. I wrote Python with MoviePy and pydub that did the cutting, mixing and exporting on its own, so nobody had to do it by hand.</p>
+        <p>It was my first taste of a pipeline: small steps, chained, running without me.</p>
+        <div class="fact"><b class="org">DreamSleep App</b><span class="mono"><b>Aug — Oct 2023</b> · AI Software Engineer, part-time</span></div>
       </div>
       <div class="beat rv">
         <h3>And walked into a research lab.</h3>
-        <p>RIS-assisted UAV models with LSTMs, CNN brain-therapy classifiers, a DehazeNet / AOD-Net dehazer for satellite imagery, and GAN recommenders on MovieLens — APR, AMR, CollaGAN, ACAE.</p>
-        <span class="mono fact"><b>Jun 2023 — Mar 2025</b> · FAST NUCES Karachi · AI Researcher, internship</span>
+        <p>For almost two years I worked across very different problems: modelling RIS-assisted UAV links in MATLAB and with LSTMs, training CNNs to classify brain-therapy data, and clearing haze out of images with DehazeNet and AOD-Net.</p>
+        <p>Then recommenders. I rebuilt GAN-based models on MovieLens — APR, AMR, CollaGAN, ACAE — along with PlasticGAN and autoencoders. The habit that stuck: read the paper, then make it run.</p>
+        <div class="fact"><b class="org">FAST NUCES Karachi</b><span class="mono"><b>Jun 2023 — Mar 2025</b> · AI Researcher, internship</span></div>
       </div>
       <div class="beat rv">
         <h3>Somewhere in there, I ran the tech for a festival.</h3>
-        <span class="mono fact"><b>Oct 2023 — Mar 2024</b> · PROCOM, FAST NUCES · Technical Lead, part-time</span>
+        <p>PROCOM is the FAST NUCES tech festival. For one season I led its technical side, part-time, next to the lab work.</p>
+        <div class="fact"><b class="org">PROCOM, FAST NUCES</b><span class="mono"><b>Oct 2023 — Mar 2024</b> · Technical Lead, part-time</span></div>
       </div>
     </div>
   </section>
@@ -226,17 +251,21 @@ footer{position:relative;z-index:1;display:flex;justify-content:space-between;fl
       <div class="beat rv">
         <div class="big"><span data-count="60">60</span><small> → </small><span data-count="93">93</span><small>%</small></div>
         <h3>I learned what it takes to make a model actually good.</h3>
-        <p>Fine-tuned and evaluated VideoReTalking, DiNet and Whisper alongside ResNet and transformer classifiers. Accuracy went from 60% to 93%; video generation went from <b>2 days to 10 minutes</b>. Then built the Python and Node.js services around it, with Pinecone and MongoDB.</p>
-        <span class="mono fact"><b>Jan — Nov 2024</b> · Axillio · Junior AI Engineer, part-time</span>
+        <p>I fine-tuned and evaluated lip-sync and speech models — VideoReTalking, DiNet, Whisper — next to ResNet and transformer classifiers.</p>
+        <p>Two numbers came out of it. Accuracy went from 60% to 93%. And generating a video went from <b>2 days to 10 minutes</b>, which is the difference between a research result and something people can use.</p>
+        <p>Then I built what sits around a model: backend services in Python and Node.js / Express, vector search on Pinecone and MongoDB, and Jest tests to keep it honest.</p>
+        <div class="fact"><b class="org">Axillio</b><span class="mono"><b>Jan — Nov 2024</b> · Junior AI Engineer, part-time</span></div>
       </div>
       <div class="beat rv">
         <h3>Fine-tuned LLaMA and image-to-text models on Intel's datasets.</h3>
-        <p>And carried Intel's AI tooling back to my university.</p>
-        <span class="mono fact"><b>Feb 2024 — Mar 2025</b> · Intel Corporation · Student Brand Ambassador</span>
+        <p>As a student ambassador I worked with large datasets Intel provided, tuning language models and image-to-text models on them.</p>
+        <p>The other half of the role was outreach: taking Intel's AI and ML tooling and developer programs back to my university and showing other students how to use them.</p>
+        <div class="fact"><b class="org">Intel Corporation</b><span class="mono"><b>Feb 2024 — Mar 2025</b> · Student Brand Ambassador</span></div>
       </div>
       <div class="beat rv">
         <h3>And taught what I was learning.</h3>
-        <span class="mono fact"><b>Aug 2024 — Mar 2025</b> · FAST NUCES Karachi · Teaching Assistant, part-time</span>
+        <p>Part-time, in the same semesters as the research and the engineering. Explaining something to a room is a quick way to find out whether you understand it.</p>
+        <div class="fact"><b class="org">FAST NUCES Karachi</b><span class="mono"><b>Aug 2024 — Mar 2025</b> · Teaching Assistant, part-time</span></div>
       </div>
     </div>
   </section>
@@ -246,23 +275,26 @@ footer{position:relative;z-index:1;display:flex;justify-content:space-between;fl
     <div class="beats">
       <div class="beat rv">
         <h3>We pointed a vision-language model at dirty water.</h3>
-        <p>Climate.io: a VLM reads a photo of water, an LLM writes the environmental report. Built end to end on Hugging Face and FastAPI.</p>
-        <span class="mono fact"><b>2024</b> · Climate.io · Co-founder</span>
+        <p>Climate.io began with a question: how much can a model tell about water from a photograph?</p>
+        <p>We built the pipeline to find out. A vision-language model reads the water imagery. A language model turns what it sees into an environmental report a person can act on. I co-founded it and built it end to end on Hugging Face and FastAPI.</p>
+        <div class="fact"><b class="org">Climate.io</b><span class="mono"><b>2024</b> · Co-founder</span></div>
         <p style="margin-top:14px"><a class="lnk" href="https://github.com/Climate-io" target="_blank" rel="noopener">github.com/Climate-io →</a></p>
       </div>
       <div class="beat rv">
         <div class="big">2<small>nd</small></div>
         <h3>It placed second at TeknoFest 2024.</h3>
-        <p>And won the UBIT Ideathon.</p>
+        <p>The same project also won the UBIT Ideathon.</p>
       </div>
       <div class="beat rv">
         <h3>Then it became a paper.</h3>
+        <p>We wrote up what we had learned: a comparison of how vision-language models and large language models perform at monitoring contaminated water.</p>
         <p><b>“A Comparative Analysis Between Visual Language and Large Language Models to Monitor Contaminated Water in the Face of Climate Change.”</b></p>
         <span class="mono fact"><b>IEEE INMIC 2024</b> · Paper ID 2024386402 · Accepted, IEEE Xplore</span>
       </div>
       <div class="beat rv">
         <h3>And I graduated.</h3>
-        <span class="mono fact"><b>2021 — 2025</b> · FAST NUCES Karachi · BS Artificial Intelligence · GPA 3.0 / 4.0 · Member, ACM and IEEE</span>
+        <p>Four years of Artificial Intelligence at FAST NUCES Karachi: computer vision, NLP, neural networks, machine learning, database systems.</p>
+        <div class="fact"><b class="org">FAST NUCES Karachi</b><span class="mono"><b>2021 — 2025</b> · BS Artificial Intelligence · Member, ACM and IEEE</span></div>
       </div>
     </div>
   </section>
@@ -272,18 +304,23 @@ footer{position:relative;z-index:1;display:flex;justify-content:space-between;fl
     <div class="beats">
       <div class="beat rv">
         <h3>A system that watches football. A bot that makes phone calls.</h3>
-        <p>Real-time detection and tracking for match analysis, and a calling bot built on speech recognition, NLP and dialogue systems. Alongside it: NLP research at Trouve Labs and an AI internship at EpicMetry, both in the same group.</p>
-        <span class="mono fact"><b>Jan — Aug 2025</b> · AHOY · AI Researcher · Remote, Dubai<br/><b>Jan — Aug 2025</b> · Trouve Labs · AI Researcher<br/><b>Feb — Apr 2025</b> · EpicMetry · AI Intern</span>
+        <p>Until here, my models answered questions. At AHOY they started acting.</p>
+        <p>One system watched football: object detection and tracking that turned match footage into real-time insights. The other picked up the phone: a calling bot built on speech recognition, NLP and dialogue systems that handled customer calls on its own.</p>
+        <p>Alongside it I did NLP research at Trouve Labs and an AI internship at EpicMetry, both in the same group.</p>
+        <div class="fact"><b class="org">AHOY</b><span class="mono"><b>Jan — Aug 2025</b> · AI Researcher · Remote, Dubai</span></div>
+        <div class="fact"><b class="org">Trouve Labs</b><span class="mono"><b>Jan — Aug 2025</b> · AI Researcher</span></div>
+        <div class="fact"><b class="org">EpicMetry</b><span class="mono"><b>Feb — Apr 2025</b> · AI Intern</span></div>
       </div>
       <div class="beat rv">
         <h3>An agent that sells flowers over Instagram DMs.</h3>
-        <p>Petals &amp; Blooms: a TypeScript sales agent with a router over specialised generator nodes — Gemini, the Instagram Graph API, Stripe. The real work was the failures: price deflection, state leaking across sessions, hallucinated availability, checkout links sent too early.</p>
+        <p>Petals &amp; Blooms is a TypeScript sales agent: a router decides what the customer needs and hands off to a specialised generator node, wired to Gemini, the Instagram Graph API and Stripe.</p>
+        <p>The real work was the failures. It dodged when asked for a price. It carried one customer's details into another's chat. It promised flowers it had not checked were in stock. It sent a checkout link before anyone had agreed to buy. Fixing those four taught me more about agents than building the first version did.</p>
         <span class="mono fact"><b>2025</b> · Side project</span>
       </div>
       <div class="beat rv">
-        <div class="big"><span data-count="79">79</span><small>%</small></div>
         <h3>An agent that trades.</h3>
-        <p>NEXUS: a Binance trading system that runs a scan, plan, execute, monitor, review loop through a 7-stage decision engine, with risk guardrails enforced server-side. 79% win rate across about 71 trades.</p>
+        <p>NEXUS is a trading system on Binance, connected over WebSocket and REST. It runs one loop without stopping: scan, plan, execute, monitor, review.</p>
+        <p>Each trade passes a 7-stage decision engine that reads chart patterns, Smart Money Concepts and VWAP. The risk limits live on the server, where the agent cannot talk itself out of them. 79% win rate across about 71 trades.</p>
         <span class="mono fact"><b>2025</b> · Side project</span>
       </div>
     </div>
@@ -305,26 +342,28 @@ footer{position:relative;z-index:1;display:flex;justify-content:space-between;fl
       <div class="beat rv">
         <h3>What I've been working on.</h3>
         <p>Agents for a multi-tenant B2B automation platform, the graph they reason over, and the data layer underneath. I lead the research team and still build hands-on.</p>
-        <span class="mono fact"><b>Sep 2025 — Present</b> · Research Team Lead · promoted from AI Software Engineer L2</span>
+        <p>One idea runs through all of it: an agent should be able to say why it did something, and be stopped before it does the wrong thing. So the reasoning lives where it can be checked, and every action passes a gate first.</p>
+        <p>I also write the specs, including a 12,700-word design for an experimentation engine and a goal-linked spec language and benchmark for UI/UX generation.</p>
+        <div class="fact"><b class="org">Research Team Lead</b><span class="mono"><b>Sep 2025 — Present</b> · promoted from AI Software Engineer L2</span></div>
       </div>
 
       <div class="beat rv">
         <div class="work">
-          <details name="w" open><summary><span>01</span><h3>A knowledge graph that reasons inside the database</h3></summary>
+          <details name="w" open><summary><span>01</span><h3>A knowledge graph that reasons inside the database<small>Reasoning runs as SQL, on YugabyteDB</small></h3></summary>
             <p>A neurosymbolic hypergraph on YugabyteDB where reasoning runs as SQL functions: an ontology-typed graph, symbolic filters before HNSW vector search, geometric scoring over <b>1024-d embeddings</b>, causal path enumeration, and Bayesian belief propagation with Thompson Sampling bandits.</p></details>
-          <details name="w"><summary><span>02</span><h3>Reasoning you can audit</h3></summary>
+          <details name="w"><summary><span>02</span><h3>Reasoning you can audit<small>Formal contracts gate every agent action</small></h3></summary>
             <p>Formal contracts and state-machine model checking gate <b>every agent action</b> and record how it was justified. Conclusions are invalidated when their sources change. Graph branching allows what-if reasoning, and an LLM planner's query plans are validated before they run.</p></details>
-          <details name="w"><summary><span>03</span><h3>Documents into knowledge</h3></summary>
+          <details name="w"><summary><span>03</span><h3>Documents into knowledge<small>A 7-layer RAG pipeline for 100+ page documents</small></h3></summary>
             <p>A 7-layer, ontology-aware RAG pipeline that ingests <b>100+ page documents</b>: two agents deliberating on LangGraph, graph-aware deduplication, rule extraction and strict source grounding, measured on recall and cycle consistency.</p></details>
-          <details name="w"><summary><span>04</span><h3>An agent platform that refuses by default</h3></summary>
+          <details name="w"><summary><span>04</span><h3>An agent platform that refuses by default<small>Policy engine, undo receipts, five-level autonomy</small></h3></summary>
             <p>Every read and write goes through a policy engine. Commands are transactional and can be undone through receipts. The assistant runs on a <b>five-level autonomy ladder</b> defined in the ontology itself.</p></details>
-          <details name="w"><summary><span>05</span><h3>One data layer for every channel</h3></summary>
+          <details name="w"><summary><span>05</span><h3>One data layer for every channel<small>24 schemas, 140+ tables, event-sourced CQRS</small></h3></summary>
             <p><b>24 schemas, 140+ tables, 130+ functions</b> and 8 state machines on an event-sourced CQRS design: conversation threading, contact identity, consent, sequences, lead scoring and audit trails. Plus a wider platform design of 128 tables with row-level security and CDC ingestion.</p></details>
-          <details name="w"><summary><span>06</span><h3>Agents that hold conversations</h3></summary>
+          <details name="w"><summary><span>06</span><h3>Agents that hold conversations<small>A DM agent on six platforms and a real-time voice agent</small></h3></summary>
             <p>A FastAPI and LangGraph service running DMs across LinkedIn, Instagram, X, Reddit, Facebook and WhatsApp, and a real-time outbound voice agent on Telnyx, Deepgram and Gemini Flash — integrated with <b>zero new schema objects</b>.</p></details>
-          <details name="w"><summary><span>07</span><h3>Proof, not vibes</h3></summary>
+          <details name="w"><summary><span>07</span><h3>Proof, not vibes<small>Differential testing: 159/159, 450/450, 801/810</small></h3></summary>
             <p>Rebuilt a rule engine in PL/pgSQL and differentially tested it against the original: <b>159/159</b>, <b>450/450</b> and <b>801/810</b> across stages. Also an LLM-driven SQL certification pipeline with Gemini 2.5 Pro and the Z3 solver.</p></details>
-          <details name="w"><summary><span>08</span><h3>A crawler that rewrites its own prompts</h3></summary>
+          <details name="w"><summary><span>08</span><h3>A crawler that rewrites its own prompts<small>Self-improving prompts through GEPA</small></h3></summary>
             <p>A semantic web crawler that improves itself through GEPA reflective prompt evolution, with a persistent long-term memory and world model.</p></details>
         </div>
       </div>
@@ -346,12 +385,13 @@ footer{position:relative;z-index:1;display:flex;justify-content:space-between;fl
 
 <section id="next" class="wrap end" data-ch data-theme="flare">
   <div class="mono">06 · Next</div>
-  <h2 class="rv">The next chapter isn't written yet.</h2>
+  <h2 class="rv">The next chapter isn't <em>written</em> yet.</h2>
   <p class="rv">If you're building AI that has to hold up outside the demo, I'd like to hear about it. I'm open to remote AI engineering roles.</p>
   <a class="mail rv" href="mailto:ayeshaitshad124@gmail.com">ayeshaitshad124@gmail.com</a>
   <div class="soc rv">
     <a class="lnk" href="https://www.linkedin.com/in/ayesha-irshad/" target="_blank" rel="noopener">LinkedIn ↗</a>
     <a class="lnk" href="https://github.com/AyeshaIrshad1337" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="lnk" href="https://drive.google.com/file/d/1BBfrr9IwLIgq-DGEpn9WsEtf6PwRnRUQ/view?usp=sharing" target="_blank" rel="noopener">Résumé ↗</a>
     <span class="mono">+92 305 2023022 · Karachi · UTC+5</span>
   </div>
 </section>
@@ -372,14 +412,14 @@ footer{position:relative;z-index:1;display:flex;justify-content:space-between;fl
   /* ---------- the graph ---------- */
   var c = document.getElementById('graph'), x = c.getContext('2d');
   var W, H, nodes = [], pulses = [], edgeK = 0, R = 150, t = 0;
-  var INK = {paper: '23,20,15', night: '236,231,218', flare: '23,10,4'};
-  var ACC = {paper: '232,66,26', night: '255,107,61', flare: '255,243,226'};
+  var INK = {paper: '15,27,45', night: '238,243,251', flare: '11,23,48'};
+  var ACC = {paper: '31,79,255', night: '95,212,255', flare: '22,56,196'};
   function rnd(seed){ return function(){ seed = (seed * 16807) % 2147483647; return seed / 2147483647; }; }
   function size(){
     var d = Math.min(window.devicePixelRatio || 1, 2), r = rnd(7);
     W = innerWidth; H = innerHeight;
     c.width = W * d; c.height = H * d; x.setTransform(d, 0, 0, d, 0, 0);
-    var n = W < 700 ? 44 : 96, ox = W * .78, oy = H * (W < 700 ? .74 : .45);
+    var small = W < 700, n = small ? 44 : 96, ox = W * (small ? .88 : .78), oy = H * (small ? .15 : .45);
     R = W < 700 ? 110 : 150;
     nodes = [{hx: ox, hy: oy}];
     for (var i = 1; i < n; i++) nodes.push({hx: r() * W, hy: r() * H});
@@ -459,7 +499,7 @@ footer{position:relative;z-index:1;display:flex;justify-content:space-between;fl
   var ticking = false;
   function onScroll(){
     ticking = false;
-    var max = root.scrollHeight - innerHeight, mid = innerHeight * .5, cur = 0;
+    var max = root.scrollHeight - innerHeight, mid = innerHeight * .32, cur = 0;
     bar.style.transform = 'scaleX(' + (max > 0 ? scrollY / max : 0) + ')';
     chapters.forEach(function(s, i){ if (s.getBoundingClientRect().top < mid) cur = i; });
     if (cur !== ch || !root.dataset.ready){
